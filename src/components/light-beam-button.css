@@ -1,0 +1,85 @@
+@property --gradient-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes light-beam-spin {
+  to { --gradient-angle: 360deg; }
+}
+
+.light-beam-button {
+  --gradient-angle: 0deg;
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 0 22px;
+  overflow: hidden;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  color: #f6f7fb;
+  background:
+    linear-gradient(#10151e, #10151e) padding-box,
+    conic-gradient(from var(--gradient-angle), transparent 0%, var(--beam-a) 37%, var(--beam-b) 49%, var(--beam-c) 55%, transparent 61%, transparent 100%) border-box;
+  box-shadow: 0 0 24px -12px color-mix(in srgb, var(--beam-a) 74%, transparent);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .01em;
+  cursor: pointer;
+  transition: transform 220ms ease, box-shadow 300ms ease, background-color 250ms ease;
+  animation: light-beam-spin 3.4s linear infinite;
+}
+
+.light-beam-button::after {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(ellipse at 50% 0%, color-mix(in srgb, var(--beam-a) 18%, transparent), transparent 68%);
+  content: "";
+  opacity: 0;
+  transition: opacity 300ms ease;
+}
+
+.light-beam-button::before {
+  position: absolute;
+  z-index: 1;
+  top: -60%;
+  bottom: -60%;
+  left: -55%;
+  width: 32%;
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / 19%), transparent);
+  content: "";
+  pointer-events: none;
+  transform: skewX(-20deg);
+  transition: left 650ms cubic-bezier(.2,.7,.2,1);
+}
+
+.light-beam-button:hover {
+  box-shadow: 0 0 34px -10px color-mix(in srgb, var(--beam-a) 80%, transparent);
+  transform: translateY(-1px);
+}
+
+.light-beam-button:hover::before { left: 130%; }
+.light-beam-button:hover::after { opacity: 1; }
+.light-beam-button:active { transform: scale(.98); }
+.light-beam-button:focus-visible { outline: 2px solid #b8dcff; outline-offset: 4px; }
+
+.light-beam-button__content {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .light-beam-button { animation: none; transition-duration: .01ms; }
+  .light-beam-button::before { transition-duration: .01ms; }
+}

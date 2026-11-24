@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#080b10"><title>Northstar — Clarity for what’s next</title><style>@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap");
+
+:root {
+  font-family: "DM Sans", "Segoe UI", sans-serif;
+  color: #f3f4f6;
+  background: #080b10;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-optical-sizing: auto;
+  --serif: "Playfair Display", Georgia, serif;
+  --line: rgb(255 255 255 / 8%);
+}
+
+* { box-sizing: border-box; }
+html { min-width: 320px; scroll-behavior: smooth; }
+body { min-width: 320px; margin: 0; }
+button, a { -webkit-tap-highlight-color: transparent; }
+::selection { color: #080b10; background: #a89bf3; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
+
+main { position: relative; overflow: hidden; }
+.shell { width: min(1192px, calc(100% - 80px)); margin-inline: auto; }
+.ambient { position: absolute; z-index: -1; pointer-events: none; border-radius: 50%; filter: blur(1px); }
+.ambient--one { width: 640px; height: 640px; right: -160px; top: 160px; background: radial-gradient(circle, rgb(92 76 171 / 13%), transparent 68%); }
+.ambient--two { width: 560px; height: 560px; left: -310px; top: 1100px; background: radial-gradient(circle, rgb(54 133 151 / 8%), transparent 68%); }
+
+.site-header { position: relative; z-index: 10; display: flex; align-items: center; justify-content: space-between; height: 96px; border-bottom: 1px solid var(--line); }
+.brand { display: inline-flex; align-items: center; gap: 11px; color: #f3f4f6; font-size: 12px; font-weight: 700; letter-spacing: .2em; text-decoration: none; }
+.brand-mark { display: inline-flex; align-items: flex-end; gap: 2px; width: 22px; height: 20px; }
+.brand-mark i { display: block; width: 5px; border: 1px solid #c5b9ff; border-radius: 4px 4px 2px 2px; transform: skewY(-28deg); }
+.brand-mark i:nth-child(1) { height: 9px; opacity: .7; }
+.brand-mark i:nth-child(2) { height: 15px; border-color: #a89bfa; }
+.brand-mark i:nth-child(3) { height: 20px; border-color: #83d9e7; }
+.main-nav { display: flex; align-items: center; gap: 38px; margin-left: 66px; }
+.main-nav a, .login-link { color: #a1a5ae; font-size: 12px; text-decoration: none; transition: color .2s ease; }
+.main-nav a:hover, .login-link:hover { color: #fff; }
+.header-actions { display: flex; align-items: center; gap: 23px; }
+.header-cta { min-height: 42px; padding-inline: 17px; font-size: 11px; }
+.mobile-menu { display: none; color: #f4f4f4; background: transparent; border: 0; }
+
+.hero { position: relative; display: grid; grid-template-columns: .92fr 1.08fr; align-items: center; min-height: 694px; padding-top: 3px; padding-bottom: 60px; }
+.hero-copy { position: relative; z-index: 2; padding: 18px 0 0 3px; }
+.eyebrow { display: flex; align-items: center; gap: 10px; color: #8c91a0; font-size: 9px; font-weight: 650; letter-spacing: .19em; }
+.eyebrow-line { width: 18px; height: 1px; background: linear-gradient(90deg, #a493f4, #62cbd9); }
+.hero h1, .section-intro h2, .approach-grid h2, .contact-panel h2 { margin: 24px 0 0; color: #f3f2f7; font-family: var(--serif); font-size: clamp(54px, 6vw, 79px); font-weight: 400; line-height: .99; letter-spacing: -.055em; }
+.hero h1 em, .section-intro h2 em, .approach-grid h2 em, .contact-panel h2 em { color: #aaa0f5; font-weight: 400; }
+.hero-lede { max-width: 410px; margin: 25px 0 0; color: #a6a9b3; font-size: 14px; line-height: 1.85; }
+.hero-actions { display: flex; align-items: center; gap: 27px; margin-top: 30px; }
+.text-link { display: inline-flex; align-items: center; gap: 8px; color: #d8d8e0; font-size: 12px; font-weight: 550; text-decoration: none; transition: color .2s ease; }
+.text-link:hover { color: #b7a8ff; }
+.hero-footnote { display: flex; align-items: center; gap: 9px; margin-top: 68px; color: #777d89; font-size: 10px; letter-spacing: .015em; }
+.tiny-status { width: 5px; height: 5px; background: #6fd6c0; border-radius: 50%; box-shadow: 0 0 10px #62cbb1; }
+
+.hero-visual { position: relative; display: flex; justify-content: center; align-items: center; min-width: 0; min-height: 550px; margin: 8px -21px 0 0; }
+.orbit { position: absolute; border: 1px solid rgb(150 142 196 / 8%); border-radius: 50%; transform: rotate(-25deg); }
+.orbit--outer { width: 590px; height: 360px; }
+.orbit--inner { width: 505px; height: 296px; border-color: rgb(150 142 196 / 7%); }
+.signal-card { position: relative; z-index: 2; width: min(480px, 100%); padding: 24px 25px 19px; border: 1px solid rgb(255 255 255 / 9%); border-radius: 14px; background: linear-gradient(145deg, rgb(21 26 36 / 97%), rgb(12 16 24 / 97%)); box-shadow: 0 32px 84px rgb(0 0 0 / 42%), inset 0 1px 0 rgb(255 255 255 / 3%); transform: perspective(1200px) rotateY(-5deg) rotateX(2deg); }
+.signal-card-top { display: flex; align-items: flex-start; justify-content: space-between; }
+.card-kicker { color: #777e8c; font-size: 8px; font-weight: 650; letter-spacing: .17em; }
+.signal-card h2 { margin: 8px 0 0; color: #e9e9f0; font-size: 13px; font-weight: 550; letter-spacing: -.015em; }
+.icon-button { display: grid; width: 27px; height: 27px; place-items: center; color: #727989; background: #171d29; border: 1px solid rgb(255 255 255 / 6%); border-radius: 50%; }
+.signal-value-row { display: flex; align-items: flex-end; justify-content: space-between; margin-top: 25px; }
+.signal-value { color: #f3f3f6; font-family: var(--serif); font-size: 39px; letter-spacing: -.045em; line-height: 1; }
+.signal-unit { color: #9a9eaa; font-size: 12px; }
+.positive-pill { display: inline-flex; align-items: center; gap: 2px; padding: 5px 8px; color: #84d7c4; background: rgb(69 174 147 / 10%); border: 1px solid rgb(89 195 165 / 15%); border-radius: 20px; font-size: 9px; }
+.signal-caption { margin-top: 7px; color: #aaaeb8; font-size: 10px; }
+.signal-caption span { margin-left: 7px; color: #69707e; }
+.chart-wrap { display: grid; grid-template-columns: 28px 1fr; height: 182px; margin-top: 14px; }
+.chart-y-labels { display: flex; flex-direction: column; justify-content: space-between; padding: 0 0 18px; color: #646b79; font-size: 8px; }
+.chart-main { position: relative; min-width: 0; }
+.chart-grid { position: absolute; inset: 0 0 18px; display: flex; flex-direction: column; justify-content: space-between; }
+.chart-grid i { display: block; width: 100%; height: 1px; background: rgb(255 255 255 / 5%); }
+.chart-line { position: absolute; inset: 0 0 18px; width: 100%; height: calc(100% - 18px); overflow: visible; }
+.chart-x-labels { position: absolute; right: 0; bottom: 0; left: 0; display: flex; justify-content: space-between; color: #646b79; font-size: 8px; }
+.signal-card-bottom { display: flex; justify-content: space-between; padding-top: 14px; border-top: 1px solid rgb(255 255 255 / 6%); color: #727987; font-size: 8px; }
+.signal-card-bottom span:first-child { display: flex; align-items: center; gap: 7px; }
+.legend-dot { width: 6px; height: 6px; background: #a493f4; border-radius: 50%; }
+.floating-note { position: absolute; z-index: 3; right: -5px; bottom: 72px; display: flex; align-items: center; gap: 10px; padding: 12px 14px 12px 11px; border: 1px solid rgb(255 255 255 / 9%); border-radius: 10px; background: #151a23; box-shadow: 0 14px 38px rgb(0 0 0 / 34%); }
+.floating-icon { display: grid; width: 29px; height: 29px; place-items: center; color: #b5a6ff; background: rgb(150 128 236 / 12%); border-radius: 8px; }
+.floating-note strong, .floating-note small { display: block; }
+.floating-note strong { color: #e4e5e9; font-size: 9px; font-weight: 550; }
+.floating-note small { margin-top: 4px; color: #7a8190; font-size: 8px; }
+.float-arrow { margin-left: 9px; color: #77d5c1; }
+.hero-index { position: absolute; right: 3px; bottom: 14px; display: flex; align-items: center; gap: 8px; color: #696f7b; font-size: 9px; }
+.hero-index span:first-child { color: #c5c0d9; }
+.hero-index i { width: 34px; height: 1px; background: linear-gradient(90deg, #a598f6 25%, #434754 25%); }
+.scroll-cue { position: absolute; bottom: 28px; left: 3px; display: flex; align-items: center; gap: 11px; color: #747a86; font-size: 8px; letter-spacing: .15em; text-decoration: none; }
+.scroll-cue svg { color: #b4a8f7; }
+
+.metrics-section { position: relative; padding: 110px 0 104px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: linear-gradient(180deg, rgb(255 255 255 / 1.5%), transparent 55%); }
+.section-intro { display: flex; align-items: flex-end; justify-content: space-between; gap: 50px; }
+.section-intro h2 { max-width: 600px; margin-top: 20px; font-size: clamp(42px, 5vw, 60px); line-height: 1.05; }
+.section-intro p { max-width: 320px; margin: 0 3px 5px 0; color: #989da8; font-size: 12px; line-height: 1.9; }
+.metric-grid { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 65px; border: 1px solid rgb(255 255 255 / 8%); border-radius: 12px; background: linear-gradient(145deg, rgb(17 21 29 / 85%), rgb(11 14 20 / 85%)); overflow: hidden; }
+.metric-card { position: relative; min-height: 244px; padding: 22px 23px 25px; overflow: hidden; border-right: 1px solid rgb(255 255 255 / 7%); }
+.metric-card:last-child { border-right: 0; }
+.metric-card-top { display: flex; align-items: center; justify-content: space-between; }
+.metric-index { color: #606674; font-size: 8px; letter-spacing: .15em; }
+.metric-trend { display: inline-flex; align-items: center; gap: 2px; color: #80cbb8; font-size: 8px; }
+.metric-number { display: block; margin-top: 31px; color: #f0eff4; font-family: var(--serif); font-size: clamp(36px, 4.2vw, 55px); line-height: .95; letter-spacing: -.055em; font-variant-numeric: tabular-nums; }
+.metric-label { margin-top: 14px; color: #d8d8df; font-size: 11px; font-weight: 550; }
+.metric-card p { margin: 7px 0 0; color: #777e8b; font-size: 9px; }
+.sparkline { position: absolute; right: 19px; bottom: 21px; width: 56px; height: 17px; opacity: .7; }
+.sparkline::before { position: absolute; right: 0; bottom: 1px; left: 0; height: 13px; border-top: 1px solid #9c8cf1; content: ""; clip-path: polygon(0 78%, 14% 47%, 28% 66%, 40% 35%, 55% 48%, 70% 11%, 84% 32%, 100% 0, 100% 8%, 84% 40%, 70% 19%, 55% 56%, 40% 43%, 28% 74%, 14% 55%, 0 86%); background: #9c8cf1; }
+.sparkline--2::before { background: #70cfd7; clip-path: polygon(0 70%, 17% 78%, 31% 45%, 45% 59%, 58% 29%, 71% 48%, 84% 15%, 100% 0, 100% 8%, 84% 23%, 71% 56%, 58% 37%, 45% 67%, 31% 53%, 17% 86%, 0 78%); }
+.sparkline--3::before { background: #84cdb8; }
+.sparkline--4::before { background: #a28ff0; }
+.metrics-note { display: flex; align-items: center; gap: 10px; margin-top: 18px; color: #737986; font-size: 9px; }
+.note-mark { color: #aaa0f5; }
+.note-rule { flex: 1; height: 1px; margin-left: 5px; background: linear-gradient(90deg, rgb(255 255 255 / 7%), transparent); }
+
+.approach-section { padding-top: 108px; padding-bottom: 105px; }
+.approach-topline { display: flex; align-items: center; justify-content: space-between; }
+.section-count { color: #717784; font-size: 9px; letter-spacing: .1em; }
+.approach-grid { display: grid; grid-template-columns: 1fr .6fr; align-items: end; gap: 80px; margin-top: 27px; }
+.approach-grid h2 { margin: 0; font-size: clamp(50px, 6vw, 72px); line-height: .99; }
+.approach-copy { max-width: 400px; padding-bottom: 7px; }
+.approach-copy p { margin: 0 0 22px; color: #9da1ac; font-size: 12px; line-height: 1.9; }
+.value-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 64px; }
+.value-card { position: relative; min-height: 192px; padding: 22px 23px; border: 1px solid rgb(255 255 255 / 8%); border-radius: 10px; background: linear-gradient(145deg, rgb(19 24 33 / 85%), rgb(13 16 23 / 82%)); transition: transform .25s ease, border-color .25s ease; }
+.value-card:hover { transform: translateY(-3px); border-color: rgb(164 147 244 / 27%); }
+.value-icon { display: grid; width: 34px; height: 34px; place-items: center; color: #aaa0f5; background: rgb(148 132 231 / 10%); border: 1px solid rgb(148 132 231 / 13%); border-radius: 9px; }
+.value-number { position: absolute; top: 25px; right: 23px; color: #656b77; font-size: 9px; }
+.value-card h3 { margin: 23px 0 0; color: #e6e6ed; font-size: 12px; font-weight: 550; }
+.value-card p { max-width: 260px; margin: 8px 0 0; color: #878d99; font-size: 10px; line-height: 1.75; }
+
+.contact-section { padding-bottom: 74px; }
+.contact-panel { position: relative; display: flex; flex-direction: column; align-items: center; min-height: 390px; justify-content: center; padding: 52px 24px; overflow: hidden; border: 1px solid rgb(255 255 255 / 9%); border-radius: 14px; background: radial-gradient(ellipse at 50% 115%, rgb(104 90 190 / 17%), transparent 55%), linear-gradient(145deg, #151923, #0e121a); text-align: center; }
+.contact-orb { position: absolute; top: -215px; width: 430px; height: 300px; border: 1px solid rgb(169 153 247 / 12%); border-radius: 50%; box-shadow: 0 0 65px rgb(146 127 235 / 8%), inset 0 0 60px rgb(146 127 235 / 6%); }
+.contact-panel .eyebrow { position: relative; z-index: 1; }
+.contact-panel h2 { position: relative; z-index: 1; margin-top: 18px; font-size: clamp(46px, 5.6vw, 64px); line-height: 1; }
+.contact-panel p { position: relative; z-index: 1; margin: 16px 0 23px; color: #979ca7; font-size: 11px; }
+.contact-panel .light-beam-button { position: relative; z-index: 1; }
+.contact-note { position: relative; z-index: 1; margin-top: 13px; color: #6f7684; font-size: 8px; }
+.site-footer { display: flex; align-items: center; justify-content: space-between; height: 90px; border-top: 1px solid var(--line); }
+.site-footer .brand { font-size: 10px; }
+.site-footer .brand-mark { transform: scale(.84); transform-origin: left center; }
+.footer-copy, .footer-legal { color: #777d89; font-size: 9px; }
+.footer-legal { color: #5f6571; }
+
+@media (max-width: 900px) {
+  .shell { width: min(100% - 52px, 740px); }
+  .main-nav { gap: 23px; margin-left: 15px; }
+  .hero { grid-template-columns: 1fr 1fr; min-height: 650px; }
+  .hero h1 { font-size: clamp(51px, 7vw, 66px); }
+  .hero-visual { margin-right: -20px; transform: scale(.88); transform-origin: center right; }
+  .floating-note { right: -19px; }
+  .metric-card { padding-inline: 17px; }
+  .metric-number { font-size: clamp(33px, 4.5vw, 47px); }
+}
+
+@media (max-width: 680px) {
+  .shell { width: calc(100% - 40px); }
+  .site-header { height: 75px; }
+  .main-nav { display: none; }
+  .main-nav--open { position: absolute; top: 74px; right: 0; left: 0; display: flex; flex-direction: column; align-items: stretch; gap: 0; margin: 0; padding: 7px 16px; border: 1px solid rgb(255 255 255 / 9%); border-radius: 10px; background: #111620; box-shadow: 0 16px 36px rgb(0 0 0 / 36%); }
+  .main-nav--open a { padding: 13px 2px; border-bottom: 1px solid rgb(255 255 255 / 6%); }
+  .main-nav--open a:last-child { border-bottom: 0; }
+  .login-link { display: none; }
+  .header-actions { margin-left: auto; margin-right: 14px; }
+  .header-cta { min-height: 38px; padding-inline: 13px; font-size: 10px; }
+  .mobile-menu { display: grid; place-items: center; padding: 8px 0 8px 7px; }
+  .hero { display: flex; flex-direction: column; align-items: stretch; min-height: 0; padding-top: 72px; padding-bottom: 69px; }
+  .hero-copy { padding: 0; }
+  .hero h1 { max-width: 520px; margin-top: 21px; font-size: clamp(52px, 12vw, 70px); }
+  .hero-lede { max-width: 450px; margin-top: 19px; font-size: 13px; }
+  .hero-actions { gap: 18px; margin-top: 23px; }
+  .hero-footnote { margin-top: 34px; font-size: 9px; }
+  .hero-visual { min-height: 380px; margin: 23px -12px 0; transform: none; }
+  .signal-card { width: min(100%, 430px); padding: 19px 18px 15px; transform: none; }
+  .orbit--outer { width: 112%; height: 280px; }
+  .orbit--inner { width: 98%; height: 230px; }
+  .chart-wrap { height: 157px; }
+  .floating-note { right: 0; bottom: 19px; padding: 9px 11px 9px 9px; }
+  .hero-index { right: 0; bottom: -17px; }
+  .scroll-cue { bottom: 20px; left: 0; }
+  .metrics-section { padding: 77px 0 72px; }
+  .section-intro { display: block; }
+  .section-intro h2 { max-width: 500px; margin-top: 18px; font-size: clamp(42px, 9vw, 54px); }
+  .section-intro p { max-width: 390px; margin: 17px 0 0; }
+  .metric-grid { grid-template-columns: repeat(2, 1fr); margin-top: 35px; }
+  .metric-card { min-height: 205px; padding: 18px 17px 22px; }
+  .metric-card:nth-child(2) { border-right: 0; }
+  .metric-card:nth-child(-n+2) { border-bottom: 1px solid rgb(255 255 255 / 7%); }
+  .metric-number { margin-top: 27px; font-size: clamp(37px, 10vw, 50px); }
+  .sparkline { bottom: 17px; }
+  .metrics-note { align-items: flex-start; line-height: 1.6; }
+  .note-rule { display: none; }
+  .approach-section { padding-top: 76px; padding-bottom: 72px; }
+  .approach-grid { display: block; margin-top: 23px; }
+  .approach-grid h2 { font-size: clamp(50px, 11vw, 66px); }
+  .approach-copy { margin-top: 23px; }
+  .value-grid { grid-template-columns: 1fr; gap: 10px; margin-top: 36px; }
+  .value-card { min-height: 155px; padding: 18px; }
+  .value-card h3 { margin-top: 17px; }
+  .contact-section { padding-bottom: 42px; }
+  .contact-panel { min-height: 350px; padding-inline: 18px; }
+  .contact-panel h2 { font-size: clamp(45px, 10vw, 58px); }
+  .contact-panel p { max-width: 280px; line-height: 1.7; }
+  .site-footer { display: grid; grid-template-columns: 1fr auto; row-gap: 0; height: 85px; }
+  .footer-copy { display: none; }
+  .footer-legal { font-size: 8px; }
+}
+
+@media (max-width: 390px) {
+  .shell { width: calc(100% - 32px); }
+  .brand { font-size: 10px; }
+  .header-actions { margin-right: 7px; }
+  .header-cta { padding-inline: 10px; }
+  .hero-actions { align-items: flex-start; flex-direction: column; }
+  .hero-visual { min-height: 345px; }
+  .signal-value { font-size: 34px; }
+  .metric-card { padding-inline: 12px; }
+  .metric-number { font-size: 35px; }
+}
+
+@property --gradient-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes light-beam-spin {
+  to { --gradient-angle: 360deg; }
+}
+
+.light-beam-button {
+  --gradient-angle: 0deg;
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 0 22px;
+  overflow: hidden;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  color: #f6f7fb;
+  background:
+    linear-gradient(#10151e, #10151e) padding-box,
+    conic-gradient(from var(--gradient-angle), transparent 0%, var(--beam-a) 37%, var(--beam-b) 49%, var(--beam-c) 55%, transparent 61%, transparent 100%) border-box;
+  box-shadow: 0 0 24px -12px color-mix(in srgb, var(--beam-a) 74%, transparent);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .01em;
+  cursor: pointer;
+  transition: transform 220ms ease, box-shadow 300ms ease, background-color 250ms ease;
+  animation: light-beam-spin 3.4s linear infinite;
+}
+
+.light-beam-button::after {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(ellipse at 50% 0%, color-mix(in srgb, var(--beam-a) 18%, transparent), transparent 68%);
+  content: "";
+  opacity: 0;
+  transition: opacity 300ms ease;
+}
+
+.light-beam-button::before {
+  position: absolute;
+  z-index: 1;
+  top: -60%;
+  bottom: -60%;
+  left: -55%;
+  width: 32%;
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / 19%), transparent);
+  content: "";
+  pointer-events: none;
+  transform: skewX(-20deg);
+  transition: left 650ms cubic-bezier(.2,.7,.2,1);
+}
+
+.light-beam-button:hover {
+  box-shadow: 0 0 34px -10px color-mix(in srgb, var(--beam-a) 80%, transparent);
+  transform: translateY(-1px);
+}
+
+.light-beam-button:hover::before { left: 130%; }
+.light-beam-button:hover::after { opacity: 1; }
+.light-beam-button:active { transform: scale(.98); }
+.light-beam-button:focus-visible { outline: 2px solid #b8dcff; outline-offset: 4px; }
+
+.light-beam-button__content {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .light-beam-button { animation: none; transition-duration: .01ms; }
+  .light-beam-button::before { transition-duration: .01ms; }
+}
+</style></head>
+<body><div id="root"><main><div class="ambient ambient--one"></div><div class="ambient ambient--two"></div><header class="site-header shell"><a class="brand" href="#top" aria-label="Northstar home"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><span>NORTHSTAR</span></a><nav class="main-nav" aria-label="Main navigation"><a href="#platform">Platform</a><a href="#results">Insights</a><a href="#approach">Our approach</a></nav><div class="header-actions"><a class="login-link" href="#contact">Sign in</a><button class="light-beam-button header-cta" type="button" style="--beam-a:#a78bfa;--beam-b:#55d6e8;--beam-c:#a78bfa"><span class="light-beam-button__content">Get a briefing <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right "><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg></span></button></div><button class="mobile-menu" aria-label="Open navigation" aria-expanded="false"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu "><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg></button></header><section class="hero shell" id="top"><div class="hero-copy"><div class="eyebrow"><span class="eyebrow-line"></span>ANALYTICS FOR WHAT’S NEXT</div><h1>Make the next move <em>feel obvious.</em></h1><p class="hero-lede">See the signal beneath the noise. Northstar brings your performance, momentum, and opportunities into one clear view.</p><div class="hero-actions"><button class="light-beam-button" type="button" style="--beam-a:#a78bfa;--beam-b:#55d6e8;--beam-c:#a78bfa"><span class="light-beam-button__content">Explore the numbers <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right "><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></span></button><a class="text-link" href="#platform">How it works <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-move-up-right "><path d="M13 5H19V11"></path><path d="M19 5L5 19"></path></svg></a></div><div class="hero-footnote"><span class="tiny-status"></span> Trusted by teams making long-view decisions</div></div><div class="hero-visual" id="platform"><div class="orbit orbit--outer"></div><div class="orbit orbit--inner"></div><div class="signal-card"><div class="signal-card-top"><div><span class="card-kicker">PORTFOLIO SIGNAL</span><h2>Performance overview</h2></div><button class="icon-button" aria-label="About this chart"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-help-circle "><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><path d="M12 17h.01"></path></svg></button></div><div class="signal-value-row"><div><span class="signal-value">84.6</span><span class="signal-unit"> pts</span></div><span class="positive-pill"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right "><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg> 12.4%</span></div><div class="signal-caption">Momentum index <span>vs. previous period</span></div><div class="chart-wrap" aria-label="Illustrative upward trend chart"><div class="chart-y-labels"><span>100</span><span>75</span><span>50</span><span>25</span></div><div class="chart-main"><div class="chart-grid"><i></i><i></i><i></i><i></i></div><svg class="chart-line" viewBox="0 0 620 210" preserveAspectRatio="none" role="img" aria-label="Portfolio signal trending upward"><defs><linearGradient id="lineGlow" x1="0" x2="1"><stop offset="0%" stop-color="#9a87f5"></stop><stop offset="100%" stop-color="#67d7e8"></stop></linearGradient><linearGradient id="areaGlow" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#8c7cf0" stop-opacity=".23"></stop><stop offset="100%" stop-color="#8c7cf0" stop-opacity="0"></stop></linearGradient></defs><path d="M0,173 C36,164 48,154 82,159 S130,144 158,151 S205,128 235,139 S282,118 310,127 S352,104 382,115 S431,92 454,99 S492,76 519,84 S560,58 586,68 S606,48 620,38 L620,210 L0,210 Z" fill="url(#areaGlow)"></path><path d="M0,173 C36,164 48,154 82,159 S130,144 158,151 S205,128 235,139 S282,118 310,127 S352,104 382,115 S431,92 454,99 S492,76 519,84 S560,58 586,68 S606,48 620,38" fill="none" stroke="url(#lineGlow)" stroke-width="2.6" vector-effect="non-scaling-stroke"></path><circle cx="520" cy="84" r="5" fill="#9e94f7" stroke="#d8d2ff" stroke-width="2"></circle><circle cx="520" cy="84" r="12" fill="#9e94f7" opacity=".13"></circle></svg><div class="chart-x-labels"><span>Jan</span><span>Mar</span><span>May</span><span>Jul</span><span>Sep</span><span>Nov</span></div></div></div><div class="signal-card-bottom"><span><i class="legend-dot"></i> Portfolio index</span><span>Updated 4 min ago</span></div></div><div class="floating-note"><span class="floating-icon"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sparkles "><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"></path><path d="M5 3v4"></path><path d="M19 17v4"></path><path d="M3 5h4"></path><path d="M17 19h4"></path></svg></span><div><strong>Signal is strengthening</strong><small>Across 8 key indicators</small></div><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right float-arrow"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg></div><div class="hero-index"><span>01</span><i></i><span>04</span></div></div><a class="scroll-cue" href="#results"><span>SCROLL TO EXPLORE</span><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-down "><path d="M12 5v14"></path><path d="m19 12-7 7-7-7"></path></svg></a></section><section class="metrics-section" id="results"><div class="shell"><div class="section-intro"><div><div class="eyebrow"><span class="eyebrow-line"></span>A CLEARER PICTURE</div><h2>Performance is more than <em>a headline.</em></h2></div><p>Bring every meaningful signal into focus. Then make decisions with the confidence to move forward.</p></div><div class="metric-grid"><article class="metric-card"><div class="metric-card-top"><span class="metric-index">01</span><span class="metric-trend"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right "><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg> +12.8%</span></div><span class="metric-number" role="img" aria-label="Assets tracked: $2.8B"><span aria-hidden="true">$0.0B</span></span><div class="metric-label">Assets tracked</div><p>Across a connected portfolio</p><div class="sparkline sparkline--1" aria-hidden="true"><i></i></div></article><article class="metric-card"><div class="metric-card-top"><span class="metric-index">02</span><span class="metric-trend"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right "><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg> +3.2 pts</span></div><span class="metric-number" role="img" aria-label="Annualized growth: 18.6%"><span aria-hidden="true">0.0%</span></span><div class="metric-label">Annualized growth</div><p>Measured across the platform</p><div class="sparkline sparkline--2" aria-hidden="true"><i></i></div></article><article class="metric-card"><div class="metric-card-top"><span class="metric-index">03</span><span class="metric-trend"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right "><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg> +1.6%</span></div><span class="metric-number" role="img" aria-label="Client retention: 97.4%"><span aria-hidden="true">0.0%</span></span><div class="metric-label">Client retention</div><p>Long-term partner relationships</p><div class="sparkline sparkline--3" aria-hidden="true"><i></i></div></article><article class="metric-card"><div class="metric-card-top"><span class="metric-index">04</span><span class="metric-trend"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right "><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg> +8 this year</span></div><span class="metric-number" role="img" aria-label="Markets covered: 42"><span aria-hidden="true">0</span></span><div class="metric-label">Markets covered</div><p>Signals in one clear view</p><div class="sparkline sparkline--4" aria-hidden="true"><i></i></div></article></div><div class="metrics-note"><span class="note-mark"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bar-chart3 "><path d="M3 3v18h18"></path><path d="M18 17V9"></path><path d="M13 17V5"></path><path d="M8 17v-3"></path></svg></span><span>Illustrative platform figures shown for this design concept.</span><span class="note-rule"></span></div></div></section><section class="approach-section shell" id="approach"><div class="approach-topline"><div class="eyebrow"><span class="eyebrow-line"></span>BUILT FOR THE LONG VIEW</div><span class="section-count">02 / 03</span></div><div class="approach-grid"><h2>Less dashboard.<br/><em>More direction.</em></h2><div class="approach-copy"><p>Complexity is inevitable. Confusion is optional. Northstar connects the details to the decisions that matter, so your team can spend less time searching and more time moving.</p><a class="text-link" href="#contact">See our approach <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right "><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a></div></div><div class="value-grid"><article class="value-card"><span class="value-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bar-chart3 "><path d="M3 3v18h18"></path><path d="M18 17V9"></path><path d="M13 17V5"></path><path d="M8 17v-3"></path></svg></span><span class="value-number">01</span><h3>See the whole picture</h3><p>One connected view for performance, risk, and momentum.</p></article><article class="value-card"><span class="value-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sparkles "><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"></path><path d="M5 3v4"></path><path d="M19 17v4"></path><path d="M3 5h4"></path><path d="M17 19h4"></path></svg></span><span class="value-number">02</span><h3>Find the meaningful signal</h3><p>Bring changes that matter to the surface, at the right time.</p></article><article class="value-card"><span class="value-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-check "><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="m9 12 2 2 4-4"></path></svg></span><span class="value-number">03</span><h3>Move with confidence</h3><p>Make the next decision with context you can stand behind.</p></article></div></section><section class="contact-section shell" id="contact"><div class="contact-panel"><div class="contact-orb"></div><div class="eyebrow"><span class="eyebrow-line"></span>YOUR NEXT CHAPTER, IN FOCUS</div><h2>Start with a clearer<br/><em>point of view.</em></h2><p>See what your data can tell you when every signal has a place.</p><button class="light-beam-button" type="button" style="--beam-a:#b3a0ff;--beam-b:#69deec;--beam-c:#b3a0ff"><span class="light-beam-button__content">Request a private briefing <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right "><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></span></button><span class="contact-note">A thoughtful conversation. No obligation.</span></div></section><footer class="site-footer shell"><a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><span>NORTHSTAR</span></a><span class="footer-copy">Clarity for what’s next.</span><span class="footer-legal">© 2026 Northstar Intelligence</span></footer></main></div><script>
+    const formatter = new Intl.NumberFormat("en-US");
+    document.querySelectorAll('[role="img"][aria-label]').forEach((counter) => {
+      const visible = counter.querySelector('[aria-hidden="true"]');
+      const valueLabel = counter.getAttribute("aria-label").split(": ").slice(1).join(": ");
+      const match = valueLabel.match(/^([^0-9]*)([0-9,.]+)(.*)$/);
+      if (!visible || !match) return;
+      const [, prefix, rawValue, suffix] = match;
+      const target = Number(rawValue.replaceAll(",", ""));
+      const decimals = (rawValue.split(".")[1] || "").length;
+      const numberFormatter = new Intl.NumberFormat("en-US", { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+      const observer = new IntersectionObserver(([entry]) => {
+        if (!entry.isIntersecting) return;
+        observer.disconnect();
+        const start = performance.now();
+        const duration = 1700;
+        const tick = (now) => {
+          const progress = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 4);
+          visible.textContent = prefix + numberFormatter.format(target * eased) + suffix;
+          if (progress < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      }, { threshold: 0.45 });
+      observer.observe(counter);
+    });
+    const nav = document.querySelector(".main-nav");
+    const menu = document.querySelector(".mobile-menu");
+    menu?.addEventListener("click", () => {
+      const open = nav?.classList.toggle("main-nav--open");
+      menu.setAttribute("aria-expanded", String(Boolean(open)));
+      menu.setAttribute("aria-label", open ? "Close navigation" : "Open navigation");
+    });
+    nav?.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => nav.classList.remove("main-nav--open")));
+    document.querySelector(".header-cta")?.addEventListener("click", () => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" }));
+    document.querySelector(".hero-actions .light-beam-button")?.addEventListener("click", () => document.querySelector("#results")?.scrollIntoView({ behavior: "smooth" }));
+  </script></body></html>
